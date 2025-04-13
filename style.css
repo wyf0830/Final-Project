@@ -57,6 +57,16 @@ section {
     font-size: 1.1em;
 }
 
+.chart-container {
+    text-align: center; 
+  }
+  
+  .chart-container .vega-chart {
+    display: inline-block; 
+    margin: auto; 
+  }
+  
+
 /* explanatory text */
 .chart-caption {
     font-size: 0.9em;

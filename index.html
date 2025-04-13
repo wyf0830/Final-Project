@@ -64,8 +64,9 @@
                 <h3>Chart 2: Daily Returns vs. Previous Day's Sentiment Score</h3>
                 <div id="vis2_return_sentiment_scatter"></div>
                 <button onclick="downloadChart('vis2_return_sentiment_scatter')">Download</button>
-                <p class="chart-caption">This scatter plot visualizes the relationship between NVIDIA's previous-day average news sentiment score and the next day’s stock return. No strong linear trend is observed, suggesting weak short-term predictability. However, extreme sentiment values may be associated with higher volatility.
-
+                <p class="chart-caption">This scatter plot illustrates the relationship between previous day's average sentiment score and the next day's daily return.  
+                                         To better detect patterns, we filtered out sentiment scores below 0.2 and applied a linear regression line.  
+                                         The slight downward slope suggests a weak negative correlation, possibly due to mean reversion after optimistic sentiment.
                 </p>
             </div>
 
@@ -80,15 +81,27 @@
                 <h3>Chart 4: Distribution of Returns by Emotions</h3>
                 <div id="vis4_return_by_sentiment_boxplot"></div>
                 <button onclick="downloadChart('vis4_return_by_sentiment_boxplot')">Download</button>
-                <p class="chart-caption">This boxplot visualizes the distribution of daily returns grouped by the previous day's sentiment score intervals. A general upward shift in median returns is observed with more positive sentiment, while negative sentiment tends to correspond with lower returns and higher volatility.
+                <p class="chart-caption">This boxplot compares daily return distributions across sentiment categories (-1: Negative, 0: Neutral, 1: Positive).  
+                                         Note: The x-axis values are category labels, not actual sentiment scores. FinBERT scores are non-negative, so Vis2 and Vis3 do not include negative values.  
+                                         Negative values here are used solely for grouping purposes in categorical comparison.
                 </p>
             </div>
 
             <div class="chart-container">
                 <h3>Figure 5: D3 Visualization (e.g. Calendar Heat Map)</h3>
+                <div style="margin-bottom: 10px;">
+                  <label for="yearDropdown"><strong>Select Year:</strong></label>
+                  <select id="yearDropdown" onchange="updateCalendarByYear()">
+                    <option value="All">All</option>
+                  </select>
+                </div>
                 <div id="vis5_d3_calendar"></div> 
                 <button onclick="downloadSVGChart('vis5_d3_calendar')">Download</button>
-                <p class="chart-caption">This calendar heatmap displays NVIDIA's daily returns from 2015 to 2024. Green indicates positive returns and red indicates negative returns, with darker shades representing larger magnitudes. The layout enables quick detection of patterns and volatility clusters across years.</p>
+                <p class="chart-caption"> This calendar heatmap displays NVIDIA's daily returns from 2015 to 2024.
+                  Blue shades represent negative returns, with darker tones indicating larger losses.
+                  White cells indicate missing data, typically due to weekends, holidays, or unavailable news.
+                  This layout enables quick detection of volatility clusters and temporal return patterns across years.
+                </p>
             </div>
 
             </section>
